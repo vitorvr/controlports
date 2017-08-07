@@ -1,9 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+const cors = require('cors');
 const mongoose = require('mongoose');
-const environmentRouter = require('./routes/environment');
-const quotes = require('./routes/quotes');
+const environmentRoutes = require('./routes/environments');
+const domainRoutes = require('./routes/domains');
+const interfaceRoutes = require('./routes/interfaces');
+
+const app = express();
+const port = 3000;
 
 //Read from <form>
 app.use(bodyParser.urlencoded({
@@ -11,11 +15,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 //Read from Json
+app.use(cors());
 app.use(bodyParser.json());
-app.use('/environment', environmentRouter);
-app.use('/quotes', quotes );
-
-const port = 3000;
+app.use('/api/environments', environmentRoutes);
+app.use('/api/domains', domainRoutes);
+app.use('/api/interfaces', interfaceRoutes);
 
 //Mongo Connection
 mongoose.Promise = global.Promise;
