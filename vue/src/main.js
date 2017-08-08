@@ -1,21 +1,17 @@
 import Vue from 'vue';
 
-/* ( there may be other imports here )
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
-( there may be other imports here ) */
-
 
 import App from './App.vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 
-import 'bootstrap/dist/css/bootstrap.css';
-
 Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.use(BootstrapVue);
 
 const router = new VueRouter({routes: routes, mode: "history"});
 
