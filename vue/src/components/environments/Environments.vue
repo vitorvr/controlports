@@ -20,8 +20,10 @@
       <b-table bordered striped hover :items="environments" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter" @row-clicked="log" />
     </div>
     <div class="col-4">
-      <b-form-input type="text" placeholder="Enter your name" v-model="id"></b-form-input>
-      <b-form-input type="text" placeholder="Enter your name" v-model="env"></b-form-input>
+      <b-form-input type="text" placeholder="Enter your name" v-model="selectedEnv.id"></b-form-input>
+      <b-form-input type="text" placeholder="Enter your name" v-model="selectedEnv.environment_name"></b-form-input>
+      <b-button variant="primary" @click="updateEnvironment()">Update</b-button>
+      <b-button variant="danger">Delete</b-button>
     </div>
   </div>
 </template>
@@ -44,8 +46,11 @@ export default {
       currentPage: 1,
       perPage: 5,
       filter: null,
-      id: '',
-      env: ''
+      selectedEnv: {
+        _id: '',
+        id: '',
+        environment_name: ''
+      }
     }
   },
   created() {
@@ -58,8 +63,15 @@ export default {
       });
     },
     log: function (record, index) {
-      this.id = record.id;
-      this.env = record.environment_name;
+      this.selectedEnv._id = record._id;
+      this.selectedEnv.id = record.id;
+      this.selectedEnv.environment_name = record.environment_name;
+      console.log(this.selectedEnv);
+    },
+    updateEnvironment: function () {
+      this.$http.put(`http://localhost:3000/api/environments/${this.selectedEnv._id}`, this.selectedEnv).then((res)=>{
+        this.getEnvironments();
+      });
     }
   }
 }
