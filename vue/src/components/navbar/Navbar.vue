@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable type="inverse" variant="info">
+  <b-navbar toggleable type="inverse" variant="inverse">
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
     <b-link class="navbar-brand" to="#">
       <span>Control Ports</span>
@@ -29,5 +29,8 @@ export default {
 </script>
 
 <style>
-
+.nav-link {
+  display: block;
+  padding: 0.3em 1em;
+}
 </style>
