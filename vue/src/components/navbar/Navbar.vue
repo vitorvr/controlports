@@ -1,7 +1,7 @@
 <template>
-  <b-navbar toggleable type="inverse" variant="inverse">
+  <b-navbar toggleable variant="faded">
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-    <b-link class="navbar-brand" to="#">
+    <b-link class="navbar-brand" to="/">
       <span>Control Ports</span>
     </b-link>
     <b-collapse is-nav id="nav_collapse">
